@@ -18,7 +18,7 @@ app.get('/about', (req, res) => {
 });
 
 // Handle any request to any other route (wildcard)
-app.all('*', (req, res) => {
+app.all('/{*splat}', (req, res) => {
   res.status(404).send('404 - Page not found');
 });
 

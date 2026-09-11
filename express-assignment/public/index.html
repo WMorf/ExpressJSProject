@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Products</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+
+  <h1>Products</h1>
+
+  <table id="table">
+    <thead><tr><th>ID</th><th>Name</th><th>Price</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <p id="status"></p>
+
+  <script>
+  "use strict";
+
+  var tbody  = document.querySelector("#table tbody");
+  var status = document.getElementById("status");
+
+  async function loadProducts() {
+    try {
+      var res = await fetch("/products");
+      if (!res.ok) { throw new Error("Server returned " + res.status); }
+
+      var data = await res.json();
+
+      data.forEach(function (p) {
+        var row = tbody.insertRow();
+        row.insertCell().textContent = p.id;
+        row.insertCell().textContent = p.name;
+        row.insertCell().textContent = "$" + p.price.toFixed(2);
+      });
+    } catch (err) {
+      status.className = "error";
+      status.textContent = "Could not load products: " + err.message;
+    }
+  }
+
+  loadProducts();
+  </script>
+
+</body>
+</html>
