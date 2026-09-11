@@ -7,7 +7,7 @@ Wesley Morford
 | `express-tutorial/` | Steps 1–9 of the Express.js tutorial — routing, route params, query params, middleware, error handling, static files, and `express.Router()` |
 | `express-assignment/` | Products API — the graded assignment |
 
-Built on Express 5.2.1. Note that Express 5 uses a stricter path parser than Express 4: the tutorial's `app.all('*', ...)` catch-all is written as `app.all('/{*splat}', ...)` here.
+Built on Express 5.2.1.
 
 ## Running it
 
